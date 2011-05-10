@@ -17,9 +17,12 @@
 				</header>
 				<article class="the_article">
 				<div class="article_inner">
-					<div class="content">{{ content }}</div>
-				</div>
-				</article>
+					<div class="content">
+            {{ content }}
+          </div>
+          {% include disqus.html %}
+				</div>          
+				</article>        
 			</div>
 		</div><!-- id="main" -->
 		<nav class="pagenation">

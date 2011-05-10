@@ -1,965 +1,333 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>the_minimum | themes for jekyll</title>
+ <title>Hammer | ruby component based state-full web framework</title>
  <link href="http://your.site.com/atom.xml" rel="self"/>
  <link href="http://your.site.com"/>
- <updated>2011-03-05T09:35:42+09:00</updated>
+ <updated>2011-05-10T19:53:07+02:00</updated>
  <id>http://layouts.studiomohawk.com/</id>
 
  
  <entry>
-   <title>001_post_example</title>
-   <link href="http://your.site.com/2011/01/16/001-post-example/"/>
-   <updated>2011-01-16T00:00:00+09:00</updated>
-   <id>http://your.site.com/2011/01/16/001-post-example</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;This is a post example.&lt;/em&gt;&lt;br /&gt;Below I&amp;#8217;ve placed commonly used markdown syntax so that you can see how I&amp;#8217;ve designed each elements.&lt;/p&gt;
-
-&lt;h2 id='this_is_h2_heading'&gt;This is h2 heading&lt;/h2&gt;
-
-&lt;h3 id='this_is_h3_heading'&gt;This is h3 heading&lt;/h3&gt;
-
-&lt;h4 id='this_is_h4_heading'&gt;This is h4 heading&lt;/h4&gt;
-
-&lt;h5 id='this_is_h5_heading'&gt;This is h5 heading&lt;/h5&gt;
-
-&lt;h6 id='this_is_h6_heading'&gt;This is h6 heading&lt;/h6&gt;
-
-&lt;h2 id='paragraph_and_link'&gt;Paragraph and link&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href='https://github.com/studiomohawk'&gt;This is a link&lt;/a&gt; commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;p&gt;Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;h2 id='list'&gt;List&lt;/h2&gt;
+   <title>HammerBuilder Introduction</title>
+   <link href="http://your.site.com/2011/05/10/HammerBuilder-introduction/"/>
+   <updated>2011-05-10T00:00:00+02:00</updated>
+   <id>http://your.site.com/2011/05/10/HammerBuilder-introduction</id>
+   <content type="html">&lt;p&gt;&lt;code&gt;HammerBuilder&lt;/code&gt; is a xhtml5 builder written in Ruby. It does not introduce anything special, you just use Ruby to get your xhtml. &lt;code&gt;HammerBuilder&lt;/code&gt; has been written with two main objectives:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;list one&lt;/li&gt;
+&lt;li&gt;Speed&lt;/li&gt;
 
-&lt;li&gt;list two&lt;/li&gt;
+&lt;li&gt;Rich API&lt;/li&gt;
 
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
+&lt;li&gt;Extensibility&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;ol&gt;
-&lt;li&gt;list one&lt;/li&gt;
+&lt;h2 id='my_motivation'&gt;My motivation&lt;/h2&gt;
 
-&lt;li&gt;list two&lt;/li&gt;
+&lt;p&gt;I needed a fast Ruby html/xhtml builder for my jet experimental framework &lt;code&gt;Hammer&lt;/code&gt;.&lt;/p&gt;
 
-&lt;li&gt;list three&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Markaby&lt;/code&gt; is slow&lt;/li&gt;
 
-&lt;li&gt;list four&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Tagz&lt;/code&gt; is really slow&lt;/li&gt;
 
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ol&gt;
+&lt;li&gt;&lt;code&gt;Wee::Brush&lt;/code&gt; is built-in &lt;code&gt;Wee&lt;/code&gt;. I did not want to dig it out and as far as i know it creates instances for each tag. That would be slow - lots of garbage.&lt;/li&gt;
 
-&lt;h2 id='blockquote'&gt;Blockquote&lt;/h2&gt;
+&lt;li&gt;Erector was the fastest but it has &lt;code&gt;Widgets&lt;/code&gt; which I did not need and they were complicating things not making easier. Also there is no way of extending easily particular tags with a method.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I decided to create my own builder.&lt;/p&gt;
+
+&lt;h2 id='usage'&gt;Usage&lt;/h2&gt;
+
+&lt;p&gt;There are two builders: &lt;code&gt;HammerBuilder::Standard&lt;/code&gt;, &lt;code&gt;HammerBuilder::Formated&lt;/code&gt;. First one builds xhtml on one line unindented. Second one formats the output.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec sed odio dui.&lt;br /&gt;Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
+&lt;p&gt;Originally I did two builders because I thought formated one would be slower, but it is not. Anyway, I left there both - could be useful.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id='image'&gt;Image&lt;/h2&gt;
+&lt;p&gt;Personally I thing commented examples are the best, so here you are.&lt;/p&gt;
 
-&lt;p&gt;There are 3 pre-defined class for images.&lt;/p&gt;
+&lt;h3 id='getting_builders'&gt;Getting builders&lt;/h3&gt;
 
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;.left&lt;/strong&gt; = Image floats left&lt;/li&gt;
+&lt;p&gt;Creating new builder is expensive. There is a pool of builders implemented.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='no'&gt;HammerBuilder&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Formated&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;new&lt;/span&gt; &lt;span class='c1'&gt;# =&amp;gt; new builder&lt;/span&gt;
+&lt;span class='n'&gt;b&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='no'&gt;HammerBuilder&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Formated&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;get&lt;/span&gt; &lt;span class='c1'&gt;# =&amp;gt; new builder from pool if there is one, or a new one&lt;/span&gt;
 
-&lt;li&gt;&lt;strong&gt;.right&lt;/strong&gt; = Image floats right&lt;/li&gt;
-
-&lt;li&gt;&lt;strong&gt;.huge&lt;/strong&gt; = If your image is big then you should use this class&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;examples below apply class accordingly.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='left' src='http://placehold.it/100x100' alt='Image' /&gt; Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec sed odio dui.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='right' src='http://placehold.it/100x100' alt='Image' /&gt; Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='huge' src='http://placehold.it/1048x300' alt='Image' /&gt;&lt;/p&gt;
-
-&lt;p&gt;Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;
-
-&lt;h2 id='syntax_highlight_you_need_to_have_pygment_on_to_use_this'&gt;Syntax highlight *You need to have pygment on to use this&lt;/h2&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='css'&gt;&lt;span class='nc'&gt;.highlight&lt;/span&gt;  &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;background&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#ffffff&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.c&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#999988&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='k'&gt;font-style&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;italic&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Comment */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.err&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#a61717&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='k'&gt;background-color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#e3d2d2&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Error */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.k&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;font-weight&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;bold&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Keyword */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.o&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;font-weight&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;bold&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Operator */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.cm&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#999988&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='k'&gt;font-style&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;italic&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Comment.Multiline */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.cp&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#999999&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='k'&gt;font-weight&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;bold&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Comment.Preproc */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.c1&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#999988&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='k'&gt;font-style&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;italic&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Comment.Single */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.cs&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#999999&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='k'&gt;font-weight&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;bold&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='k'&gt;font-style&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;italic&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Comment.Special */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.gd&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#000000&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='k'&gt;background-color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#ffdddd&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Generic.Deleted */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.gd&lt;/span&gt; &lt;span class='nc'&gt;.x&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#000000&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='k'&gt;background-color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#ffaaaa&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Generic.Deleted.Specific */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.ge&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;font-style&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;italic&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Generic.Emph */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.gr&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#aa0000&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Generic.Error */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.gh&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#999999&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Generic.Heading */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.gi&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#000000&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='k'&gt;background-color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#ddffdd&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Generic.Inserted */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.gi&lt;/span&gt; &lt;span class='nc'&gt;.x&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#000000&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='k'&gt;background-color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#aaffaa&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Generic.Inserted.Specific */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.go&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#888888&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Generic.Output */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.gp&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#555555&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Generic.Prompt */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.gs&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;font-weight&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;bold&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Generic.Strong */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.gu&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#aaaaaa&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Generic.Subheading */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.gt&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#aa0000&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Generic.Traceback */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.kc&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;font-weight&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;bold&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Keyword.Constant */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.kd&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;font-weight&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;bold&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Keyword.Declaration */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.kp&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;font-weight&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;bold&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Keyword.Pseudo */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.kr&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;font-weight&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;bold&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Keyword.Reserved */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.kt&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#445588&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='k'&gt;font-weight&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;bold&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Keyword.Type */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.m&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#009999&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.Number */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.s&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#d14&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.String */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.na&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#008080&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Name.Attribute */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.nb&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#0086B3&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Name.Builtin */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.nc&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#445588&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='k'&gt;font-weight&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;bold&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Name.Class */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.no&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#008080&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Name.Constant */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.ni&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#800080&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Name.Entity */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.ne&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#990000&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='k'&gt;font-weight&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;bold&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Name.Exception */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.nf&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#990000&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='k'&gt;font-weight&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;bold&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Name.Function */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.nn&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#555555&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Name.Namespace */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.nt&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#000080&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Name.Tag */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.nv&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#008080&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Name.Variable */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.ow&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;font-weight&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;bold&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Operator.Word */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.w&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#bbbbbb&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Text.Whitespace */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.mf&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#009999&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.Number.Float */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.mh&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#009999&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.Number.Hex */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.mi&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#009999&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.Number.Integer */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.mo&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#009999&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.Number.Oct */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.sb&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#d14&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.String.Backtick */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.sc&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#d14&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.String.Char */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.sd&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#d14&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.String.Doc */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.s2&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#d14&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.String.Double */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.se&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#d14&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.String.Escape */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.sh&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#d14&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.String.Heredoc */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.si&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#d14&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.String.Interpol */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.sx&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#d14&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.String.Other */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.sr&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#009926&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.String.Regex */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.s1&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#d14&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.String.Single */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.ss&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#990073&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.String.Symbol */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.bp&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#999999&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Name.Builtin.Pseudo */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.vc&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#008080&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Name.Variable.Class */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.vg&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#008080&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Name.Variable.Global */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.vi&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#008080&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Name.Variable.Instance */&lt;/span&gt;
-&lt;span class='nc'&gt;.highlight&lt;/span&gt; &lt;span class='nc'&gt;.il&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#009999&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c'&gt;/* Literal.Number.Integer.Long */&lt;/span&gt;
+&lt;span class='c1'&gt;#  when builder is not needed any more&lt;/span&gt;
+&lt;span class='k'&gt;if&lt;/span&gt; &lt;span class='n'&gt;am_i_smart?&lt;/span&gt;
+  &lt;span class='n'&gt;b&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;release!&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='n'&gt;b&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='kp'&gt;nil&lt;/span&gt; &lt;span class='c1'&gt;# resets builder and returns it to the pool &lt;/span&gt;
+&lt;span class='k'&gt;else&lt;/span&gt;
+  &lt;span class='n'&gt;b&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='kp'&gt;nil&lt;/span&gt; &lt;span class='c1'&gt;# or the reference can be lost and it gets garbage-collected&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content>
- </entry>
- 
- <entry>
-   <title>999_post_example</title>
-   <link href="http://your.site.com/2011/01/15/999-post-example/"/>
-   <updated>2011-01-15T00:00:00+09:00</updated>
-   <id>http://your.site.com/2011/01/15/999-post-example</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;This is a post example.&lt;/em&gt; Below I&amp;#8217;ve placed commonly used markdown syntax so that you can see how I&amp;#8217;ve designed each elements. &lt;em&gt;Note:&lt;/em&gt; If you&amp;#8217;d like to use image in your post, you should add class name for it. Not sure how? Open this file located at _posts dir. There are 2 predefined class for image:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.left - image float left&lt;/li&gt;
-
-&lt;li&gt;.right - image float right If you like to use bigger image, then you don&amp;#8217;t need to give class name at all. image is still get nice border around it and center it.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id='this_is_h2_heading'&gt;This is h2 heading&lt;/h2&gt;
-
-&lt;h3 id='this_is_h3_heading'&gt;This is h3 heading&lt;/h3&gt;
-
-&lt;h4 id='this_is_h4_heading'&gt;This is h4 heading&lt;/h4&gt;
-
-&lt;h5 id='this_is_h5_heading'&gt;This is h5 heading&lt;/h5&gt;
-
-&lt;h6 id='this_is_h6_heading'&gt;This is h6 heading&lt;/h6&gt;
-
-&lt;p&gt;&lt;a href='https://github.com/studiomohawk'&gt;This link&lt;/a&gt; commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;p&gt;Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img class='left' src='http://placehold.it/100x100' alt='Image' /&gt; Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec sed odio dui.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='right' src='http://placehold.it/100x100' alt='Image' /&gt; Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src='http://placehold.it/580x300' alt='Image' /&gt; Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>999_post_example</title>
-   <link href="http://your.site.com/2011/01/14/999-post-example/"/>
-   <updated>2011-01-14T00:00:00+09:00</updated>
-   <id>http://your.site.com/2011/01/14/999-post-example</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;This is a post example.&lt;/em&gt; Below I&amp;#8217;ve placed commonly used markdown syntax so that you can see how I&amp;#8217;ve designed each elements. &lt;em&gt;Note:&lt;/em&gt; If you&amp;#8217;d like to use image in your post, you should add class name for it. Not sure how? Open this file located at _posts dir. There are 2 predefined class for image:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.left - image float left&lt;/li&gt;
-
-&lt;li&gt;.right - image float right If you like to use bigger image, then you don&amp;#8217;t need to give class name at all. image is still get nice border around it and center it.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id='this_is_h2_heading'&gt;This is h2 heading&lt;/h2&gt;
-
-&lt;h3 id='this_is_h3_heading'&gt;This is h3 heading&lt;/h3&gt;
-
-&lt;h4 id='this_is_h4_heading'&gt;This is h4 heading&lt;/h4&gt;
-
-&lt;h5 id='this_is_h5_heading'&gt;This is h5 heading&lt;/h5&gt;
-
-&lt;h6 id='this_is_h6_heading'&gt;This is h6 heading&lt;/h6&gt;
-
-&lt;p&gt;&lt;a href='https://github.com/studiomohawk'&gt;This link&lt;/a&gt; commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;p&gt;Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img class='left' src='http://placehold.it/100x100' alt='Image' /&gt; Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec sed odio dui.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='right' src='http://placehold.it/100x100' alt='Image' /&gt; Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src='http://placehold.it/580x300' alt='Image' /&gt; Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>999_post_example</title>
-   <link href="http://your.site.com/2011/01/13/999-post-example/"/>
-   <updated>2011-01-13T00:00:00+09:00</updated>
-   <id>http://your.site.com/2011/01/13/999-post-example</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;This is a post example.&lt;/em&gt; Below I&amp;#8217;ve placed commonly used markdown syntax so that you can see how I&amp;#8217;ve designed each elements. &lt;em&gt;Note:&lt;/em&gt; If you&amp;#8217;d like to use image in your post, you should add class name for it. Not sure how? Open this file located at _posts dir. There are 2 predefined class for image:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.left - image float left&lt;/li&gt;
-
-&lt;li&gt;.right - image float right If you like to use bigger image, then you don&amp;#8217;t need to give class name at all. image is still get nice border around it and center it.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id='this_is_h2_heading'&gt;This is h2 heading&lt;/h2&gt;
-
-&lt;h3 id='this_is_h3_heading'&gt;This is h3 heading&lt;/h3&gt;
-
-&lt;h4 id='this_is_h4_heading'&gt;This is h4 heading&lt;/h4&gt;
-
-&lt;h5 id='this_is_h5_heading'&gt;This is h5 heading&lt;/h5&gt;
-
-&lt;h6 id='this_is_h6_heading'&gt;This is h6 heading&lt;/h6&gt;
-
-&lt;p&gt;&lt;a href='https://github.com/studiomohawk'&gt;This link&lt;/a&gt; commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;p&gt;Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img class='left' src='http://placehold.it/100x100' alt='Image' /&gt; Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec sed odio dui.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='right' src='http://placehold.it/100x100' alt='Image' /&gt; Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src='http://placehold.it/580x300' alt='Image' /&gt; Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>999_post_example</title>
-   <link href="http://your.site.com/2011/01/12/999-post-example/"/>
-   <updated>2011-01-12T00:00:00+09:00</updated>
-   <id>http://your.site.com/2011/01/12/999-post-example</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;This is a post example.&lt;/em&gt; Below I&amp;#8217;ve placed commonly used markdown syntax so that you can see how I&amp;#8217;ve designed each elements. &lt;em&gt;Note:&lt;/em&gt; If you&amp;#8217;d like to use image in your post, you should add class name for it. Not sure how? Open this file located at _posts dir. There are 2 predefined class for image:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.left - image float left&lt;/li&gt;
-
-&lt;li&gt;.right - image float right If you like to use bigger image, then you don&amp;#8217;t need to give class name at all. image is still get nice border around it and center it.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id='this_is_h2_heading'&gt;This is h2 heading&lt;/h2&gt;
-
-&lt;h3 id='this_is_h3_heading'&gt;This is h3 heading&lt;/h3&gt;
-
-&lt;h4 id='this_is_h4_heading'&gt;This is h4 heading&lt;/h4&gt;
-
-&lt;h5 id='this_is_h5_heading'&gt;This is h5 heading&lt;/h5&gt;
-
-&lt;h6 id='this_is_h6_heading'&gt;This is h6 heading&lt;/h6&gt;
-
-&lt;p&gt;&lt;a href='https://github.com/studiomohawk'&gt;This link&lt;/a&gt; commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;p&gt;Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img class='left' src='http://placehold.it/100x100' alt='Image' /&gt; Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec sed odio dui.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='right' src='http://placehold.it/100x100' alt='Image' /&gt; Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src='http://placehold.it/580x300' alt='Image' /&gt; Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>999_post_example</title>
-   <link href="http://your.site.com/2011/01/11/999-post-example/"/>
-   <updated>2011-01-11T00:00:00+09:00</updated>
-   <id>http://your.site.com/2011/01/11/999-post-example</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;This is a post example.&lt;/em&gt; Below I&amp;#8217;ve placed commonly used markdown syntax so that you can see how I&amp;#8217;ve designed each elements. &lt;em&gt;Note:&lt;/em&gt; If you&amp;#8217;d like to use image in your post, you should add class name for it. Not sure how? Open this file located at _posts dir. There are 2 predefined class for image:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.left - image float left&lt;/li&gt;
-
-&lt;li&gt;.right - image float right If you like to use bigger image, then you don&amp;#8217;t need to give class name at all. image is still get nice border around it and center it.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id='this_is_h2_heading'&gt;This is h2 heading&lt;/h2&gt;
-
-&lt;h3 id='this_is_h3_heading'&gt;This is h3 heading&lt;/h3&gt;
-
-&lt;h4 id='this_is_h4_heading'&gt;This is h4 heading&lt;/h4&gt;
-
-&lt;h5 id='this_is_h5_heading'&gt;This is h5 heading&lt;/h5&gt;
-
-&lt;h6 id='this_is_h6_heading'&gt;This is h6 heading&lt;/h6&gt;
-
-&lt;p&gt;&lt;a href='https://github.com/studiomohawk'&gt;This link&lt;/a&gt; commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;p&gt;Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img class='left' src='http://placehold.it/100x100' alt='Image' /&gt; Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec sed odio dui.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='right' src='http://placehold.it/100x100' alt='Image' /&gt; Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src='http://placehold.it/580x300' alt='Image' /&gt; Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>999_post_example</title>
-   <link href="http://your.site.com/2011/01/10/999-post-example/"/>
-   <updated>2011-01-10T00:00:00+09:00</updated>
-   <id>http://your.site.com/2011/01/10/999-post-example</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;This is a post example.&lt;/em&gt; Below I&amp;#8217;ve placed commonly used markdown syntax so that you can see how I&amp;#8217;ve designed each elements. &lt;em&gt;Note:&lt;/em&gt; If you&amp;#8217;d like to use image in your post, you should add class name for it. Not sure how? Open this file located at _posts dir. There are 2 predefined class for image:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.left - image float left&lt;/li&gt;
-
-&lt;li&gt;.right - image float right If you like to use bigger image, then you don&amp;#8217;t need to give class name at all. image is still get nice border around it and center it.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id='this_is_h2_heading'&gt;This is h2 heading&lt;/h2&gt;
-
-&lt;h3 id='this_is_h3_heading'&gt;This is h3 heading&lt;/h3&gt;
-
-&lt;h4 id='this_is_h4_heading'&gt;This is h4 heading&lt;/h4&gt;
-
-&lt;h5 id='this_is_h5_heading'&gt;This is h5 heading&lt;/h5&gt;
-
-&lt;h6 id='this_is_h6_heading'&gt;This is h6 heading&lt;/h6&gt;
-
-&lt;p&gt;&lt;a href='https://github.com/studiomohawk'&gt;This link&lt;/a&gt; commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;p&gt;Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img class='left' src='http://placehold.it/100x100' alt='Image' /&gt; Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec sed odio dui.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='right' src='http://placehold.it/100x100' alt='Image' /&gt; Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src='http://placehold.it/580x300' alt='Image' /&gt; Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>999_post_example</title>
-   <link href="http://your.site.com/2011/01/09/999-post-example/"/>
-   <updated>2011-01-09T00:00:00+09:00</updated>
-   <id>http://your.site.com/2011/01/09/999-post-example</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;This is a post example.&lt;/em&gt; Below I&amp;#8217;ve placed commonly used markdown syntax so that you can see how I&amp;#8217;ve designed each elements. &lt;em&gt;Note:&lt;/em&gt; If you&amp;#8217;d like to use image in your post, you should add class name for it. Not sure how? Open this file located at _posts dir. There are 2 predefined class for image:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.left - image float left&lt;/li&gt;
-
-&lt;li&gt;.right - image float right If you like to use bigger image, then you don&amp;#8217;t need to give class name at all. image is still get nice border around it and center it.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id='this_is_h2_heading'&gt;This is h2 heading&lt;/h2&gt;
-
-&lt;h3 id='this_is_h3_heading'&gt;This is h3 heading&lt;/h3&gt;
-
-&lt;h4 id='this_is_h4_heading'&gt;This is h4 heading&lt;/h4&gt;
-
-&lt;h5 id='this_is_h5_heading'&gt;This is h5 heading&lt;/h5&gt;
-
-&lt;h6 id='this_is_h6_heading'&gt;This is h6 heading&lt;/h6&gt;
-
-&lt;p&gt;&lt;a href='https://github.com/studiomohawk'&gt;This link&lt;/a&gt; commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;p&gt;Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img class='left' src='http://placehold.it/100x100' alt='Image' /&gt; Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec sed odio dui.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='right' src='http://placehold.it/100x100' alt='Image' /&gt; Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src='http://placehold.it/580x300' alt='Image' /&gt; Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>999_post_example</title>
-   <link href="http://your.site.com/2011/01/07/999-post-example/"/>
-   <updated>2011-01-07T00:00:00+09:00</updated>
-   <id>http://your.site.com/2011/01/07/999-post-example</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;This is a post example.&lt;/em&gt; Below I&amp;#8217;ve placed commonly used markdown syntax so that you can see how I&amp;#8217;ve designed each elements. &lt;em&gt;Note:&lt;/em&gt; If you&amp;#8217;d like to use image in your post, you should add class name for it. Not sure how? Open this file located at _posts dir. There are 2 predefined class for image:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.left - image float left&lt;/li&gt;
-
-&lt;li&gt;.right - image float right If you like to use bigger image, then you don&amp;#8217;t need to give class name at all. image is still get nice border around it and center it.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id='this_is_h2_heading'&gt;This is h2 heading&lt;/h2&gt;
-
-&lt;h3 id='this_is_h3_heading'&gt;This is h3 heading&lt;/h3&gt;
-
-&lt;h4 id='this_is_h4_heading'&gt;This is h4 heading&lt;/h4&gt;
-
-&lt;h5 id='this_is_h5_heading'&gt;This is h5 heading&lt;/h5&gt;
-
-&lt;h6 id='this_is_h6_heading'&gt;This is h6 heading&lt;/h6&gt;
-
-&lt;p&gt;&lt;a href='https://github.com/studiomohawk'&gt;This link&lt;/a&gt; commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;p&gt;Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img class='left' src='http://placehold.it/100x100' alt='Image' /&gt; Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec sed odio dui.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='right' src='http://placehold.it/100x100' alt='Image' /&gt; Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src='http://placehold.it/580x300' alt='Image' /&gt; Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>999_post_example</title>
-   <link href="http://your.site.com/2011/01/06/999-post-example/"/>
-   <updated>2011-01-06T00:00:00+09:00</updated>
-   <id>http://your.site.com/2011/01/06/999-post-example</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;This is a post example.&lt;/em&gt; Below I&amp;#8217;ve placed commonly used markdown syntax so that you can see how I&amp;#8217;ve designed each elements. &lt;em&gt;Note:&lt;/em&gt; If you&amp;#8217;d like to use image in your post, you should add class name for it. Not sure how? Open this file located at _posts dir. There are 2 predefined class for image:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.left - image float left&lt;/li&gt;
-
-&lt;li&gt;.right - image float right If you like to use bigger image, then you don&amp;#8217;t need to give class name at all. image is still get nice border around it and center it.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id='this_is_h2_heading'&gt;This is h2 heading&lt;/h2&gt;
-
-&lt;h3 id='this_is_h3_heading'&gt;This is h3 heading&lt;/h3&gt;
-
-&lt;h4 id='this_is_h4_heading'&gt;This is h4 heading&lt;/h4&gt;
-
-&lt;h5 id='this_is_h5_heading'&gt;This is h5 heading&lt;/h5&gt;
-
-&lt;h6 id='this_is_h6_heading'&gt;This is h6 heading&lt;/h6&gt;
-
-&lt;p&gt;&lt;a href='https://github.com/studiomohawk'&gt;This link&lt;/a&gt; commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;p&gt;Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img class='left' src='http://placehold.it/100x100' alt='Image' /&gt; Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec sed odio dui.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='right' src='http://placehold.it/100x100' alt='Image' /&gt; Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src='http://placehold.it/580x300' alt='Image' /&gt; Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>999_post_example</title>
-   <link href="http://your.site.com/2011/01/05/999-post-example/"/>
-   <updated>2011-01-05T00:00:00+09:00</updated>
-   <id>http://your.site.com/2011/01/05/999-post-example</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;This is a post example.&lt;/em&gt; Below I&amp;#8217;ve placed commonly used markdown syntax so that you can see how I&amp;#8217;ve designed each elements. &lt;em&gt;Note:&lt;/em&gt; If you&amp;#8217;d like to use image in your post, you should add class name for it. Not sure how? Open this file located at _posts dir. There are 2 predefined class for image:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.left - image float left&lt;/li&gt;
-
-&lt;li&gt;.right - image float right If you like to use bigger image, then you don&amp;#8217;t need to give class name at all. image is still get nice border around it and center it.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id='this_is_h2_heading'&gt;This is h2 heading&lt;/h2&gt;
-
-&lt;h3 id='this_is_h3_heading'&gt;This is h3 heading&lt;/h3&gt;
-
-&lt;h4 id='this_is_h4_heading'&gt;This is h4 heading&lt;/h4&gt;
-
-&lt;h5 id='this_is_h5_heading'&gt;This is h5 heading&lt;/h5&gt;
-
-&lt;h6 id='this_is_h6_heading'&gt;This is h6 heading&lt;/h6&gt;
-
-&lt;p&gt;&lt;a href='https://github.com/studiomohawk'&gt;This link&lt;/a&gt; commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;p&gt;Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img class='left' src='http://placehold.it/100x100' alt='Image' /&gt; Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec sed odio dui.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='right' src='http://placehold.it/100x100' alt='Image' /&gt; Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src='http://placehold.it/580x300' alt='Image' /&gt; Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>999_post_example</title>
-   <link href="http://your.site.com/2011/01/04/999-post-example/"/>
-   <updated>2011-01-04T00:00:00+09:00</updated>
-   <id>http://your.site.com/2011/01/04/999-post-example</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;This is a post example.&lt;/em&gt; Below I&amp;#8217;ve placed commonly used markdown syntax so that you can see how I&amp;#8217;ve designed each elements. &lt;em&gt;Note:&lt;/em&gt; If you&amp;#8217;d like to use image in your post, you should add class name for it. Not sure how? Open this file located at _posts dir. There are 2 predefined class for image:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.left - image float left&lt;/li&gt;
-
-&lt;li&gt;.right - image float right If you like to use bigger image, then you don&amp;#8217;t need to give class name at all. image is still get nice border around it and center it.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id='this_is_h2_heading'&gt;This is h2 heading&lt;/h2&gt;
-
-&lt;h3 id='this_is_h3_heading'&gt;This is h3 heading&lt;/h3&gt;
-
-&lt;h4 id='this_is_h4_heading'&gt;This is h4 heading&lt;/h4&gt;
-
-&lt;h5 id='this_is_h5_heading'&gt;This is h5 heading&lt;/h5&gt;
-
-&lt;h6 id='this_is_h6_heading'&gt;This is h6 heading&lt;/h6&gt;
-
-&lt;p&gt;&lt;a href='https://github.com/studiomohawk'&gt;This link&lt;/a&gt; commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;p&gt;Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img class='left' src='http://placehold.it/100x100' alt='Image' /&gt; Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec sed odio dui.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='right' src='http://placehold.it/100x100' alt='Image' /&gt; Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src='http://placehold.it/580x300' alt='Image' /&gt; Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>999_post_example</title>
-   <link href="http://your.site.com/2011/01/03/999-post-example/"/>
-   <updated>2011-01-03T00:00:00+09:00</updated>
-   <id>http://your.site.com/2011/01/03/999-post-example</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;This is a post example.&lt;/em&gt; Below I&amp;#8217;ve placed commonly used markdown syntax so that you can see how I&amp;#8217;ve designed each elements. &lt;em&gt;Note:&lt;/em&gt; If you&amp;#8217;d like to use image in your post, you should add class name for it. Not sure how? Open this file located at _posts dir. There are 2 predefined class for image:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.left - image float left&lt;/li&gt;
-
-&lt;li&gt;.right - image float right If you like to use bigger image, then you don&amp;#8217;t need to give class name at all. image is still get nice border around it and center it.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id='this_is_h2_heading'&gt;This is h2 heading&lt;/h2&gt;
-
-&lt;h3 id='this_is_h3_heading'&gt;This is h3 heading&lt;/h3&gt;
-
-&lt;h4 id='this_is_h4_heading'&gt;This is h4 heading&lt;/h4&gt;
-
-&lt;h5 id='this_is_h5_heading'&gt;This is h5 heading&lt;/h5&gt;
-
-&lt;h6 id='this_is_h6_heading'&gt;This is h6 heading&lt;/h6&gt;
-
-&lt;p&gt;&lt;a href='https://github.com/studiomohawk'&gt;This link&lt;/a&gt; commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;p&gt;Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img class='left' src='http://placehold.it/100x100' alt='Image' /&gt; Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec sed odio dui.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='right' src='http://placehold.it/100x100' alt='Image' /&gt; Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src='http://placehold.it/580x300' alt='Image' /&gt; Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>999_post_example</title>
-   <link href="http://your.site.com/2011/01/02/999-post-example/"/>
-   <updated>2011-01-02T00:00:00+09:00</updated>
-   <id>http://your.site.com/2011/01/02/999-post-example</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;This is a post example.&lt;/em&gt; Below I&amp;#8217;ve placed commonly used markdown syntax so that you can see how I&amp;#8217;ve designed each elements. &lt;em&gt;Note:&lt;/em&gt; If you&amp;#8217;d like to use image in your post, you should add class name for it. Not sure how? Open this file located at _posts dir. There are 2 predefined class for image:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.left - image float left&lt;/li&gt;
-
-&lt;li&gt;.right - image float right If you like to use bigger image, then you don&amp;#8217;t need to give class name at all. image is still get nice border around it and center it.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id='this_is_h2_heading'&gt;This is h2 heading&lt;/h2&gt;
-
-&lt;h3 id='this_is_h3_heading'&gt;This is h3 heading&lt;/h3&gt;
-
-&lt;h4 id='this_is_h4_heading'&gt;This is h4 heading&lt;/h4&gt;
-
-&lt;h5 id='this_is_h5_heading'&gt;This is h5 heading&lt;/h5&gt;
-
-&lt;h6 id='this_is_h6_heading'&gt;This is h6 heading&lt;/h6&gt;
-
-&lt;p&gt;&lt;a href='https://github.com/studiomohawk'&gt;This link&lt;/a&gt; commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;p&gt;Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img class='left' src='http://placehold.it/100x100' alt='Image' /&gt; Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec sed odio dui.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='right' src='http://placehold.it/100x100' alt='Image' /&gt; Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src='http://placehold.it/580x300' alt='Image' /&gt; Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>999_post_example</title>
-   <link href="http://your.site.com/2011/01/01/999-post-example/"/>
-   <updated>2011-01-01T00:00:00+09:00</updated>
-   <id>http://your.site.com/2011/01/01/999-post-example</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;This is a post example.&lt;/em&gt; Below I&amp;#8217;ve placed commonly used markdown syntax so that you can see how I&amp;#8217;ve designed each elements. &lt;em&gt;Note:&lt;/em&gt; If you&amp;#8217;d like to use image in your post, you should add class name for it. Not sure how? Open this file located at _posts dir. There are 2 predefined class for image:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.left - image float left&lt;/li&gt;
-
-&lt;li&gt;.right - image float right If you like to use bigger image, then you don&amp;#8217;t need to give class name at all. image is still get nice border around it and center it.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id='this_is_h2_heading'&gt;This is h2 heading&lt;/h2&gt;
-
-&lt;h3 id='this_is_h3_heading'&gt;This is h3 heading&lt;/h3&gt;
-
-&lt;h4 id='this_is_h4_heading'&gt;This is h4 heading&lt;/h4&gt;
-
-&lt;h5 id='this_is_h5_heading'&gt;This is h5 heading&lt;/h5&gt;
-
-&lt;h6 id='this_is_h6_heading'&gt;This is h6 heading&lt;/h6&gt;
-
-&lt;p&gt;&lt;a href='https://github.com/studiomohawk'&gt;This link&lt;/a&gt; commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;p&gt;Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;list one&lt;/li&gt;
-
-&lt;li&gt;list two&lt;/li&gt;
-
-&lt;li&gt;list three&lt;/li&gt;
-
-&lt;li&gt;list four&lt;/li&gt;
-
-&lt;li&gt;list five&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img class='left' src='http://placehold.it/100x100' alt='Image' /&gt; Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Donec sed odio dui.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='right' src='http://placehold.it/100x100' alt='Image' /&gt; Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src='http://placehold.it/580x300' alt='Image' /&gt; Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;</content>
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Don&amp;#8217;t&lt;/strong&gt; forget to lose the reference in the first case. It&amp;#8217;s yours responsibility not to use builder after you have released it.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id='building_xhtml'&gt;Building xhtml&lt;/h3&gt;
+
+&lt;p&gt;Basic syntax is similar to other html/xhtml builders you may know. I borrowed from &lt;a href='http://markaby.rubyforge.org/'&gt;Markaby&lt;/a&gt;, &lt;a href='http://erector.rubyforge.org/'&gt;Erector&lt;/a&gt; and from not well known framework &lt;a href='http://www.ntecs.de/projects/wee/doc/rdoc/'&gt;Wee&lt;/a&gt; and its &lt;code&gt;Wee::Brush&lt;/code&gt;es.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='no'&gt;HammerBuilder&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Formated&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;get&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;go_in&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+  &lt;span class='n'&gt;xhtml5!&lt;/span&gt;
+  &lt;span class='n'&gt;html&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+    &lt;span class='n'&gt;head&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='n'&gt;title&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;my_page&amp;#39;&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt;
+    &lt;span class='n'&gt;body&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+      &lt;span class='n'&gt;div&lt;/span&gt; &lt;span class='ss'&gt;:id&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;content&amp;#39;&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+        &lt;span class='nb'&gt;p&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;my page&amp;#39;s content&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:class&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;centered&amp;#39;&lt;/span&gt;
+      &lt;span class='k'&gt;end&lt;/span&gt;
+    &lt;span class='k'&gt;end&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;to_xhtml!&lt;/span&gt; &lt;span class='c1'&gt;# =&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='html'&gt;&lt;span class='cp'&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;html&lt;/span&gt; &lt;span class='na'&gt;xmlns=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;http://www.w3.org/1999/xhtml&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class='nt'&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class='nt'&gt;&amp;lt;title&amp;gt;&lt;/span&gt;my_page&lt;span class='nt'&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+  &lt;span class='nt'&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+  &lt;span class='nt'&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class='nt'&gt;&amp;lt;div&lt;/span&gt; &lt;span class='na'&gt;id=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;content&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class='nt'&gt;&amp;lt;p&lt;/span&gt; &lt;span class='na'&gt;class=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;centered&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;my page&amp;#39;s content&lt;span class='nt'&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+    &lt;span class='nt'&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class='nt'&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;But builder has internal class representation of each tag same as &lt;code&gt;Wee::Brush&lt;/code&gt;. When &lt;code&gt;#div&lt;/code&gt; is called its instance is returned, following calls are possible.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='n'&gt;div&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;rclass&lt;/span&gt; &lt;span class='c1'&gt;# HammerBuilder::Formated::Div&lt;/span&gt;
+&lt;span class='c1'&gt;# rclass is original ruby method #class &lt;/span&gt;
+
+&lt;span class='n'&gt;div&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;id&lt;/span&gt; &lt;span class='ss'&gt;:id&lt;/span&gt; &lt;span class='c1'&gt;# &amp;lt;div id=&amp;quot;id&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class='n'&gt;div&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;class&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;left&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;border&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt; &lt;span class='c1'&gt;# &amp;lt;div class=&amp;quot;left border&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class='n'&gt;meta&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;http_equiv&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;content-type&amp;quot;&lt;/span&gt; &lt;span class='c1'&gt;# &amp;lt;meta http-equiv=&amp;quot;content-type&amp;quot; /&amp;gt;&lt;/span&gt;
+&lt;span class='n'&gt;a&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;onclick&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;js&amp;#39;&lt;/span&gt; &lt;span class='c1'&gt;# &amp;lt;a onclick=&amp;quot;js&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h3 id='tags_content'&gt;Tag&amp;#8217;s content&lt;/h3&gt;
+
+&lt;p&gt;How to get content into double tag:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='n'&gt;div&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;content&amp;#39;&lt;/span&gt; &lt;span class='c1'&gt;# &amp;lt;div&amp;gt;content&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class='n'&gt;div&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;content&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;content&amp;#39;&lt;/span&gt; &lt;span class='c1'&gt;# &amp;lt;div&amp;gt;content&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class='n'&gt;div&lt;/span&gt; &lt;span class='ss'&gt;:content&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;content&amp;#39;&lt;/span&gt; &lt;span class='c1'&gt;# &amp;lt;div&amp;gt;content&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class='n'&gt;div&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='n'&gt;text&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;content&amp;#39;&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c1'&gt;# &amp;lt;div&amp;gt;content&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class='n'&gt;div&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;with&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='n'&gt;text&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;content&amp;#39;&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c1'&gt;# &amp;lt;div&amp;gt;content&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class='n'&gt;div&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='ss'&gt;:id&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='ss'&gt;:id&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='n'&gt;text&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;content&amp;#39;&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='c1'&gt;# &amp;lt;div id=&amp;quot;id&amp;quot;&amp;gt;content&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class='n'&gt;div&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;id&lt;/span&gt; &lt;span class='ss'&gt;:id&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; 
+  &lt;span class='n'&gt;text&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;content&amp;#39;&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt; &lt;span class='c1'&gt;# &amp;lt;div id=&amp;quot;id&amp;quot;&amp;gt;content&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h3 id='classes'&gt;Classes&lt;/h3&gt;
+
+&lt;p&gt;Any attribute method you call is immediately appended to output with exception of classes.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='n'&gt;div&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='ss'&gt;:class&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;left&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;class&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;center&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='c1'&gt;# &amp;lt;div class=&amp;#39;left center&amp;#39;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class='n'&gt;div&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='ss'&gt;:id&lt;/span&gt; &lt;span class='o'&gt;=&amp;lt;&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;id&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;2&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='c1'&gt;# &amp;lt;div id=&amp;quot;1&amp;quot; id=&amp;quot;2&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id='things_you_should_know_about_hammerbuilder'&gt;Things you should know about HammerBuilder&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;HammerBuilder&lt;/code&gt; is implemented as streaming library. Anything what can be flushed to output is flushed. There are no multiple instances for each tag. Every tag of the same type share a same instance (unique within the instance of a builder).&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='nb'&gt;puts&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='no'&gt;HammerBuilder&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Standard&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;get&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;go_in&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+  &lt;span class='nb'&gt;puts&lt;/span&gt; &lt;span class='n'&gt;div&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;object_id&lt;/span&gt;
+  &lt;span class='nb'&gt;puts&lt;/span&gt; &lt;span class='n'&gt;div&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;object_id&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;to_xhtml!&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='c1'&gt;# output:&lt;/span&gt;
+&lt;span class='c1'&gt;# 10069200&lt;/span&gt;
+&lt;span class='c1'&gt;# 10069200&lt;/span&gt;
+&lt;span class='c1'&gt;# &amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Something like this cannot be constructed.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='nb'&gt;puts&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='no'&gt;HammerBuilder&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Standard&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;get&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;go_in&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+  &lt;span class='n'&gt;a&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;div&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;a&amp;#39;&lt;/span&gt;
+  &lt;span class='n'&gt;div&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;b&amp;#39;&lt;/span&gt;
+  &lt;span class='n'&gt;a&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;class&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;class&amp;#39;&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;to_xhtml!&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Respectively can be, but output will be &lt;code&gt;&amp;lt;div&amp;gt;a&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;class&amp;quot;&amp;gt;b&amp;lt;/div&amp;gt;&lt;/code&gt;, because when &lt;code&gt;#class&lt;/code&gt; is called the second div is being builded.&lt;/p&gt;
+
+&lt;h2 id='helpers'&gt;Helpers&lt;/h2&gt;
+
+&lt;p&gt;If they are needed they can be mixed directly into Builder&amp;#8217;s instance&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='no'&gt;Hammer&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;FormatedBuilder&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;new&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;go_in&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+  &lt;span class='kp'&gt;extend&lt;/span&gt; &lt;span class='no'&gt;ActionView&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Helpers&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;NumberHelper&lt;/span&gt;
+  &lt;span class='n'&gt;div&lt;/span&gt; &lt;span class='n'&gt;number_with_precision&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='no'&gt;Math&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;PI&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:precision&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='mi'&gt;4&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;to_xhtml&lt;/span&gt; &lt;span class='c1'&gt;# =&amp;gt; &amp;lt;div&amp;gt;3.1416&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Be careful when you are using this with &lt;code&gt;Pool&lt;/code&gt;. Some instances may have helpers and some don&amp;#8217;t.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;or new builder descendant can be made.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='k'&gt;class&lt;/span&gt; &lt;span class='nc'&gt;MyBuilder&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='no'&gt;Hammer&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;FormatedBuilder&lt;/span&gt;
+  &lt;span class='kp'&gt;include&lt;/span&gt; &lt;span class='no'&gt;ActionView&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Helpers&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;NumberHelper&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;
+
+&lt;span class='no'&gt;MyBuilder&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;new&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;go_in&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+  &lt;span class='n'&gt;div&lt;/span&gt; &lt;span class='n'&gt;number_with_precision&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='no'&gt;Math&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;PI&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:precision&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='mi'&gt;4&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;to_xhtml&lt;/span&gt; &lt;span class='c1'&gt;# =&amp;gt; &amp;lt;div&amp;gt;3.1416&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id='extensibility'&gt;Extensibility&lt;/h2&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='k'&gt;class&lt;/span&gt; &lt;span class='nc'&gt;MyBuilder&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='no'&gt;HammerBuilder&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Formated&lt;/span&gt;
+
+  &lt;span class='c1'&gt;# define new method to all tags&lt;/span&gt;
+  &lt;span class='n'&gt;extend_class&lt;/span&gt; &lt;span class='ss'&gt;:AbstractTag&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+    &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;hide!&lt;/span&gt;
+      &lt;span class='nb'&gt;self&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;class&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;hidden&amp;#39;&lt;/span&gt;
+    &lt;span class='k'&gt;end&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+
+  &lt;span class='c1'&gt;# add pseudo tag&lt;/span&gt;
+  &lt;span class='n'&gt;define_class&lt;/span&gt; &lt;span class='ss'&gt;:Component&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:Div&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+    &lt;span class='nb'&gt;class_eval&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&amp;lt;-&lt;/span&gt;&lt;span class='no'&gt;RUBYCODE&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='bp'&gt;__FILE__&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='bp'&gt;__LINE__&lt;/span&gt;
+&lt;span class='sh'&gt;      def open(id, attributes = nil, &amp;amp;block)&lt;/span&gt;
+&lt;span class='sh'&gt;        super(attributes, &amp;amp;nil).id(id).class(&amp;#39;component&amp;#39;)&lt;/span&gt;
+&lt;span class='sh'&gt;        block ? with(&amp;amp;block) : self&lt;/span&gt;
+&lt;span class='sh'&gt;      end&lt;/span&gt;
+&lt;span class='no'&gt;    RUBYCODE&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+  &lt;span class='n'&gt;define_tag&lt;/span&gt; &lt;span class='ss'&gt;:component&lt;/span&gt;
+
+  &lt;span class='c1'&gt;# if the class is not needed same can be done this way&lt;/span&gt;
+  &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;simple_component&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;id&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;attributes&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='kp'&gt;nil&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;block&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+    &lt;span class='n'&gt;div&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='nb'&gt;id&lt;/span&gt;&lt;span class='o'&gt;].&lt;/span&gt;&lt;span class='n'&gt;attributes&lt;/span&gt; &lt;span class='n'&gt;attributes&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;block&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;
+
+&lt;span class='no'&gt;MyBuilder&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;get&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;go_in&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+  &lt;span class='n'&gt;div&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='ss'&gt;:content&lt;/span&gt;&lt;span class='o'&gt;].&lt;/span&gt;&lt;span class='n'&gt;with&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+    &lt;span class='n'&gt;span&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='ss'&gt;:secret&lt;/span&gt;&lt;span class='o'&gt;].&lt;/span&gt;&lt;span class='n'&gt;class&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;left&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;hide!&lt;/span&gt;
+    &lt;span class='n'&gt;component&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;component-1&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+      &lt;span class='n'&gt;strong&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;something&amp;#39;&lt;/span&gt;
+    &lt;span class='k'&gt;end&lt;/span&gt;
+    &lt;span class='n'&gt;simple_component&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;component-1&amp;#39;&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;to_xhtml!&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;result is&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='html'&gt;&lt;span class='nt'&gt;&amp;lt;div&lt;/span&gt; &lt;span class='na'&gt;id=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;content&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class='nt'&gt;&amp;lt;span&lt;/span&gt; &lt;span class='na'&gt;id=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;secret&amp;quot;&lt;/span&gt; &lt;span class='na'&gt;class=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;left hidden&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+  &lt;span class='nt'&gt;&amp;lt;div&lt;/span&gt; &lt;span class='na'&gt;id=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;component-1&amp;quot;&lt;/span&gt; &lt;span class='na'&gt;class=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;component&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class='nt'&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;something&lt;span class='nt'&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt;
+  &lt;span class='nt'&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class='nt'&gt;&amp;lt;div&lt;/span&gt; &lt;span class='na'&gt;id=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;component-1&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id='how_to_use_hammerbuilder'&gt;How to use HammerBuilder&lt;/h2&gt;
+
+&lt;p&gt;The idea is that any object intended to rendering will have methods which renders the object into builder. There is a &lt;code&gt;HammerBuilder::Helper&lt;/code&gt; for that purpose.&lt;/p&gt;
+
+&lt;p&gt;Supose we have some &lt;code&gt;User&lt;/code&gt; class with some builder methods &lt;code&gt;#detail&lt;/code&gt; and &lt;code&gt;#attribute&lt;/code&gt; defined,&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='k'&gt;class&lt;/span&gt; &lt;span class='nc'&gt;User&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='no'&gt;Struct&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;new&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='ss'&gt;:name&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:login&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:email&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+  &lt;span class='kp'&gt;include&lt;/span&gt; &lt;span class='no'&gt;HammerBuilder&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Helper&lt;/span&gt;
+
+  &lt;span class='n'&gt;builder&lt;/span&gt; &lt;span class='ss'&gt;:detail&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;&lt;span class='n'&gt;user&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt;
+    &lt;span class='n'&gt;ul&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+      &lt;span class='n'&gt;user&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;attribute&lt;/span&gt; &lt;span class='nb'&gt;self&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:name&lt;/span&gt;
+      &lt;span class='n'&gt;user&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;attribute&lt;/span&gt; &lt;span class='nb'&gt;self&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:login&lt;/span&gt;
+      &lt;span class='n'&gt;user&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;attribute&lt;/span&gt; &lt;span class='nb'&gt;self&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:email&lt;/span&gt;
+    &lt;span class='k'&gt;end&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+
+  &lt;span class='n'&gt;builder&lt;/span&gt; &lt;span class='ss'&gt;:attribute&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;&lt;span class='n'&gt;user&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;attribute&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt;
+    &lt;span class='n'&gt;li&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+      &lt;span class='n'&gt;strong&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;&lt;/span&gt;&lt;span class='si'&gt;#{&lt;/span&gt;&lt;span class='n'&gt;attribute&lt;/span&gt;&lt;span class='si'&gt;}&lt;/span&gt;&lt;span class='s2'&gt;: &amp;quot;&lt;/span&gt;
+      &lt;span class='n'&gt;text&lt;/span&gt; &lt;span class='n'&gt;user&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;send&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;attribute&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+    &lt;span class='k'&gt;end&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;
+
+&lt;span class='nb'&gt;puts&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='no'&gt;HammerBuilder&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='no'&gt;Formated&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;get&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;go_in&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+  &lt;span class='no'&gt;User&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;new&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;Peter&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;peter&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;peter@example.com&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;detail&lt;/span&gt; &lt;span class='nb'&gt;self&lt;/span&gt;
+  &lt;span class='nb'&gt;p&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;builder methods are: &lt;/span&gt;&lt;span class='si'&gt;#{&lt;/span&gt;&lt;span class='no'&gt;User&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;builder_methods&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;join&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='si'&gt;}&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;to_xhtml!&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;then we get:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='html'&gt;&lt;span class='nt'&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
+  &lt;span class='nt'&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+    &lt;span class='nt'&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;name: &lt;span class='nt'&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt;Peter
+  &lt;span class='nt'&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+  &lt;span class='nt'&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+    &lt;span class='nt'&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;login: &lt;span class='nt'&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt;peter
+  &lt;span class='nt'&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+  &lt;span class='nt'&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+    &lt;span class='nt'&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;email: &lt;span class='nt'&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt;peter@example.com
+  &lt;span class='nt'&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;p&amp;gt;&lt;/span&gt;builder methods are: detail,attribute&lt;span class='nt'&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id='benchmark'&gt;Benchmark&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;HammerBuilder&lt;/code&gt; has been designed to be fast. So is it?&lt;/p&gt;
+
+&lt;h3 id='synthetic'&gt;Synthetic&lt;/h3&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='text'&gt;                              user     system      total        real
+render                    4.380000   0.000000   4.380000 (  4.394127)
+render3                   4.990000   0.000000   4.990000 (  5.017267)
+HammerBuilder::Standard   5.590000   0.000000   5.590000 (  5.929775)
+HammerBuilder::Formated   5.520000   0.000000   5.520000 (  5.511297)
+erubis                    7.340000   0.000000   7.340000 (  7.345410)
+erubis-reuse              4.670000   0.000000   4.670000 (  4.666334)
+fasterubis                7.700000   0.000000   7.700000 (  7.689792)
+fasterubis-reuse          4.650000   0.000000   4.650000 (  4.648017)
+tenjin                   11.810000   0.280000  12.090000 ( 12.084124)
+tenjin-reuse              3.170000   0.010000   3.180000 (  3.183110)
+erector                  12.100000   0.000000  12.100000 ( 12.103520)
+markaby                  20.750000   0.030000  20.780000 ( 21.371292)
+tagz                     73.200000   0.140000  73.340000 ( 73.306450)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h3 id='in_rails_3'&gt;In Rails 3&lt;/h3&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='text'&gt;BenchTest#test_erubis_partials (3.34 sec warmup)
+           wall_time: 3.56 sec
+              memory: 0.00 KB
+             objects: 0
+             gc_runs: 15
+             gc_time: 0.53 ms
+BenchTest#test_erubis_single (552 ms warmup)
+           wall_time: 544 ms
+              memory: 0.00 KB
+             objects: 0
+             gc_runs: 4
+             gc_time: 0.12 ms
+BenchTest#test_hammer_builder (2.33 sec warmup)
+           wall_time: 847 ms
+              memory: 0.00 KB
+             objects: 0
+             gc_runs: 5
+             gc_time: 0.17 ms
+BenchTest#test_tenjin_partial (942 ms warmup)
+           wall_time: 1.21 sec
+              memory: 0.00 KB
+             objects: 0
+             gc_runs: 7
+             gc_time: 0.25 ms
+BenchTest#test_tenjin_single (531 ms warmup)
+           wall_time: 532 ms
+              memory: 0.00 KB
+             objects: 0
+             gc_runs: 6
+             gc_time: 0.20 ms
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h3 id='conclusion'&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;Template engines are slightly faster than &lt;code&gt;HammerBuilder&lt;/code&gt; when template does not content a lot of inserting or partials. On the other hand when partials are used, &lt;code&gt;HammerBuilder&lt;/code&gt; beats template engines. There is no overhead for partials in &lt;code&gt;HammerBuilder&lt;/code&gt; compared to using partials in template engine. The difference is significant for &lt;code&gt;Erubis&lt;/code&gt;, &lt;code&gt;Tenjin&lt;/code&gt; is not so bad i did not find any easy way to use &lt;code&gt;Tenjin&lt;/code&gt; in Rails 3 (I did some hacking).&lt;/p&gt;
+
+&lt;p&gt;So which one is better? It dependent on how much your rendering is fragmented or dynamic.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;But I thing It is save to say, &lt;code&gt;HammerBuilder&lt;/code&gt; is comparable in speed with templates or even better. There is a rich API on top of that, I am happy with the results. &lt;strong&gt;What do you think?&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content>
  </entry>
  
  

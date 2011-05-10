@@ -141,13 +141,15 @@ body.post {
 		blockquote {
 			border-left: 1em solid #eceded;
 			padding-left: 1em;
+      font-weight: normal;
 			p { margin-left: 0; }
 		}
 		ul { list-style: square; }
 		ol { list-style: decimal; }
 		p code, li code {
-			background-color: rgba(75, 77, 69, 0.8);
+			background-color: rgba(75, 77, 69, 0.1);
 			padding: 0 5px;
+      font-family: monospace;
 		}
 		img {
 			background: #f0f0f0;
@@ -164,7 +166,7 @@ body.post {
 		}
 		.highlight { margin-bottom: 1.5em; }
 		.highlight:before {
-			content: "Source code:";
+			/*content: "Source code:";*/
 			display: block;
 			margin: 0 0 7px 7px;
 		}
@@ -173,6 +175,7 @@ body.post {
 			margin-left: 0;
 			padding: 10px;
 			overflow: auto;
+      font-family: monospace;
 		}
 	}
 }
@@ -193,4 +196,10 @@ body.post {
 		list-style: square;
 		padding-left: 1em;
 	}
+}
+
+/* Disques corrections */
+
+#disqus_thread a {
+  border: none;
 }

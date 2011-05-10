@@ -122,17 +122,20 @@ body.post .content h6 a:hover { border: 0; }
 body.post .content blockquote {
   border-left: 1em solid #eceded;
   padding-left: 1em;
+  font-weight: normal;
 }
 body.post .content blockquote p { margin-left: 0; }
 body.post .content ul { list-style: square; }
 body.post .content ol { list-style: decimal; }
 body.post .content p code {
-  background-color: rgba(75, 77, 69, 0.8);
+  background-color: rgba(75, 77, 69, 0.1);
   padding: 0 5px;
+  font-family: monospace;
 }
 body.post .content li code {
-  background-color: rgba(75, 77, 69, 0.8);
+  background-color: rgba(75, 77, 69, 0.1);
   padding: 0 5px;
+  font-family: monospace;
 }
 body.post .content img {
   background: #f0f0f0;
@@ -149,7 +152,6 @@ body.post .content img.huge {
 }
 body.post .content .highlight { margin-bottom: 1.5em; }
 body.post .content .highlight:before {
-  content: "Source code:";
   display: block;
   margin: 0 0 7px 7px;
 }
@@ -158,6 +160,7 @@ body.post .content .highlight pre {
   margin-left: 0;
   padding: 10px;
   overflow: auto;
+  font-family: monospace;
 }
 .pagenation {
   padding: 24px 0;
@@ -173,3 +176,4 @@ body.post .content .highlight pre {
   list-style: square;
   padding-left: 1em;
 }
+#disqus_thread a { border: none; }
