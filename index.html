@@ -1,7 +1,22 @@
-<html>
-  <head>
-    <title></title>
-    <style></style>
-  </head>
-  <body>hammer blog goes here</body>
-</html>
+---
+layout: home
+title: Hammer
+desctiption: this is where your meta description for top page.
+---
+<nav>
+<ul class="posts">
+	{% for post in site.posts limit:10 %}
+	<li class="article-link">
+	<a href="{{ post.url }}" class="h3">{{ post.title }}</a>
+	<small>
+		<date>{{ post.date | date_to_string }}</date>
+	</small>
+	</li>
+	{% if forloop.length == 10 %}
+		{% if forloop.last == true %}
+			<li class="backnumber"><a href="/backnumber/" class="btn" title="backnumber">Backnumber</a></li>
+		{% endif %}
+	{% endif %}
+	{% endfor %}
+</ul>
+</nav>
