@@ -116,6 +116,25 @@ meta.http_equiv "content-type" # <meta http-equiv="content-type" />
 a.onclick 'js' # <a onclick="js"></a>
 {% endhighlight %}
 
+Following call will not be possible, div does not have href attribute therefore there is no method for it.
+{% highlight ruby %}
+div.href => NoMethodError
+{% endhighlight %}
+
+One last note. If you pass hash of attributes
+
+{% highlight ruby %}
+div :id => 'id', :class => 'class'
+{% endhighlight %}
+
+its equivalent to
+
+{% highlight ruby %}
+div.attributes :id => 'id', :class => 'class'
+{% endhighlight %}
+
+`#attributes` does not go around methods `#id`, `#class`. `#attributes` calls them passing values as arguments.
+
 ### Tag's content
 
 How to get content into double tag:
