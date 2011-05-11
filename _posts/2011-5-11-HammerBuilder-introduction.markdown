@@ -246,7 +246,7 @@ class MyBuilder < HammerBuilder::Formated
 
   # if the class is not needed same can be done this way
   def simple_component(id, attributes = nil, &block)
-    div[id].attributes attributes, &block
+    div[id].class(:component).attributes attributes, &block
   end
 end
 
@@ -269,7 +269,7 @@ result is
   <div id="component-1" class="component">
     <strong>something</strong>
   </div>
-  <div id="component-1"></div>
+  <div id="component-1" class="component"></div>
 </div>
 {% endhighlight %}
 
