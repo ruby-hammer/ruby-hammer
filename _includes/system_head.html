@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="google-site-verification" content="{{ site.sitemap }}">
-	<link href="{{ site.url }}atom.xml" rel="alternate" title="{{ site.sitename }} | {{ site.tagline }}" type="application/atom+xml">
+	<link href="{{ site.url }}/atom.xml" rel="alternate" title="{{ site.sitename }} | {{ site.tagline }}" type="application/atom+xml">
 	<link rel="stylesheet" media="all" href="/css/master.css">
 	<link rel="stylesheet" media="all" href="/css/mediaqueries.css">
 	<script src="/js/modernizr.js"></script>
@@ -23,4 +23,5 @@
 		<meta name="description" content="{{ page.desctiption }}">
 	{% endcase %}
   <link rel="shortcut icon" href="/img/hammer.png">
+  {% include ga.html %}
 </head>

@@ -3,8 +3,10 @@ layout: post
 title: HammerBuilder Introduction
 ---
 
-`HammerBuilder` is a xhtml5 builder written in Ruby. It does not introduce anything special, you just
-use Ruby to get your xhtml. `HammerBuilder` has been written with two main objectives:
+[`HammerBuilder`](https://github.com/ruby-hammer/hammer-builder)
+is a xhtml5 builder written in Ruby 1.9.2. It does not introduce anything special, you just
+use Ruby to get your xhtml. [`HammerBuilder`](https://github.com/ruby-hammer/hammer-builder)
+has been written with three objectives:
 * Speed
 * Rich API
 * Extensibility
@@ -17,7 +19,8 @@ I needed a fast Ruby html/xhtml builder for my jet experimental framework `Hamme
 * `Wee::Brush` is built-in `Wee`. I did not want to dig it out and as far as i know it creates instances for each tag.
 That would be slow - lots of garbage.
 * Erector was the fastest but it has `Widgets` which I did not need and they were complicating things not making
-easier. Also there is no way of extending easily particular tags with a method.
+easier. Also there is no way of extending easily particular tags with a method. Erector is great but too heavy for what
+I needed.
 
 I decided to create my own builder.
 
@@ -27,7 +30,7 @@ There are two builders: `HammerBuilder::Standard`, `HammerBuilder::Formated`.
 First one builds xhtml on one line unindented. Second one formats the output.
 
 > Originally I did two builders because I thought formated one would be slower, but it is not.
-> Anyway, I left there both - could be useful.
+> Formated one is slower no more then 1%. Anyway, I left there both - could be useful.
 
 Personally I thing commented examples are the best, so here you are.
 
@@ -84,8 +87,24 @@ end.to_xhtml! # =>
 </html>
 {% endhighlight %}
 
-But builder has internal class representation of each tag same as `Wee::Brush`. When `#div` is called its instance
-is returned, following calls are possible.
+But builder does not force its scope, tags can be rendered from outside if needed.
+
+{% highlight ruby %}
+b = HammerBuilder::Formated.get
+b.xhtml5!
+b.html do
+  b.head { b.title 'my_page' }
+  b.body do
+    b.div :id => 'content' do
+      b.p "my page's content", :class => 'centered'
+    end
+  end
+end
+b.to_xhtml! # => same as example above
+{% endhighlight %}
+
+Builder has internal class representation of each tag same as `Wee::Brush`.
+When `#div` is called its instance is returned, following calls are possible.
 
 {% highlight ruby %}
 div.rclass # HammerBuilder::Formated::Div
@@ -125,7 +144,8 @@ div(:id =< 1).id(2) # <div id="1" id="2"></div>
 
 ## Things you should know about HammerBuilder
 
-`HammerBuilder` is implemented as streaming library. Anything what can be flushed to output is flushed.
+[`HammerBuilder`](https://github.com/ruby-hammer/hammer-builder) is implemented as streaming library. Anything what can
+be flushed to output is flushed.
 There are no multiple instances for each tag.
 Every tag of the same type share a same instance (unique within the instance of a builder).
 
@@ -152,7 +172,8 @@ end.to_xhtml!)
 Respectively can be, but output will be `<div>a</div><div class="class">b</div>`, because when `#class` is called the
 second div is being builded.
 
-`HammerBuilder` creates what he can prior to rendering and uses heavily meta-programming, because of that instantiating
+[`HammerBuilder`](https://github.com/ruby-hammer/hammer-builder) creates what he can prior to rendering and uses heavily
+meta-programming, because of that instantiating
 the very first instance of builder triggers some magic staff taking about a one second. Creating new builders of the
 same class is than much faster and getting builder from a pool is instant.
 
@@ -284,7 +305,7 @@ then we get:
 
 ## Benchmark
 
-`HammerBuilder` has been designed to be fast. So is it?
+[`HammerBuilder`](https://github.com/ruby-hammer/hammer-builder) has been designed to be fast. So is it?
 
 ### Synthetic
 
@@ -342,13 +363,17 @@ BenchTest#test_tenjin_single (531 ms warmup)
 
 ### Conclusion
 
-Template engines are slightly faster than `HammerBuilder` when template does not content a lot of inserting or partials.
-On the other hand when partials are used, `HammerBuilder` beats template engines. There is no overhead for partials in
-`HammerBuilder` compared to using partials in template engine. The difference is significant for `Erubis`, `Tenjin` is
-not so bad i did not find any easy way to use `Tenjin` in Rails 3 (I did some hacking).
+Template engines are slightly faster than [`HammerBuilder`](https://github.com/ruby-hammer/hammer-builder)
+when template does not content a lot of inserting or partials.
+On the other hand when partials are used, [`HammerBuilder`](https://github.com/ruby-hammer/hammer-builder)
+beats template engines.
+There is no overhead for partials in [`HammerBuilder`](https://github.com/ruby-hammer/hammer-builder)
+compared to using partials in template engine. The difference is significant for `Erubis`, `Tenjin` is
+not so bad, but I did not find any easy way to use `Tenjin` in Rails 3 (I did some hacking).
 
 So which one is better? It dependent on how much your rendering is fragmented or dynamic.
 
-> But I thing It is save to say, `HammerBuilder` is comparable in speed with templates or even better.
+> But I thing It is save to say, [`HammerBuilder`](https://github.com/ruby-hammer/hammer-builder) is comparable in speed
+> with templates or even better.
 > There is a rich API on top of that, I am happy with the results. **What do you think?**
 

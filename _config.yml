@@ -1,13 +1,13 @@
 # MUST EDIT BELOW
 sitename: Hammer                                        #Your site title
 tagline: ruby component based state-full web framework  #You should always have a tagline
-url: http://your.site.com                               #URL Please
-ga: UA-XXXXX-X                                          #Google Analytics ID
-sitemap: GOOGLEWEBMASTER                                #Google webmaster verification code
+url: http://hammer.pitr.ch                               #URL Please
+ga: UA-4005004-7                                          #Google Analytics ID
+# sitemap: GOOGLEWEBMASTER                                #Google webmaster verification code
 # END
 # CHOOSE YOUR PREFERENCE
 pygments:    true
 markdown:    maruku
 permalink:   pretty
 # END
-exclude: LICENSE, README.markdown, Rakefile, nbproject
+exclude: LICENSE, README.markdown, Rakefile, nbproject, .git
