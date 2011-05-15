@@ -1,9 +1,9 @@
 # MUST EDIT BELOW
-sitename: Hammer                                        #Your site title
-tagline: ruby component based state-full web framework  #You should always have a tagline
-url: http://hammer.pitr.ch                               #URL Please
+sitename: Hammer                                          #Your site title
+tagline: ruby component based state-full web framework    #You should always have a tagline
+url: http://hammer.pitr.ch                                #URL Please
 ga: UA-4005004-7                                          #Google Analytics ID
-# sitemap: GOOGLEWEBMASTER                                #Google webmaster verification code
+sitemap: 36nvxNeDRTXtwiPVqm567f3C3E8_Q8cbvWhbfwWpvng      #Google webmaster verification code
 # END
 # CHOOSE YOUR PREFERENCE
 pygments:    true
